@@ -6,8 +6,9 @@
   
 exports.index = function(req, res){
   var iso_codes = getIsoCodesFromResults('../vote_results.json');
-  
-  res.render('index', {iso_codes: iso_codes});
+  var results = {};
+  results.iso_codes = iso_codes;
+  res.render('index', results);
 };
 
 function getIsoCodesFromResults(json_filename){
