@@ -5,14 +5,15 @@
 
   
 exports.index = function(req, res){
-  var iso_codes = getIsoCodesFromResults('../vote_results.json');
+  var iso_codes = getIsoCodesFromResults('../public/assets/vote_results.json');
   var results = {};
   results.iso_codes = iso_codes;
   res.render('index', results);
 };
 
 function getIsoCodesFromResults(json_filename){
-  var vote_results = require(json_filename).vote_results;
+  var vote_results_json = require(json_filename); 
+  var vote_results = vote_results_json.vote_results;
   var results = {};
   results.yes = getIsoArray(vote_results.voted_yes);
   results.no =  getIsoArray(vote_results.voted_no);
