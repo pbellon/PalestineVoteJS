@@ -1,3 +1,11 @@
+/**
+ * A little method for Arrays to see if Array have an element or not
+ * @param element
+ *      the element to test
+ * @return Boolean
+ *      true if the element is present
+ *      false if not. 
+ */
 Array.prototype.includes = function(element){
   var result = false;
   if(this.indexOf(element) !== -1){
@@ -7,17 +15,16 @@ Array.prototype.includes = function(element){
 };
 
 /** 
- * Constructor of my map with the vote results
+ * Constructor of my map
  * @param vote_result 
  *      {
- *        yes_votes_iso_codes: [],
- *        no_votes_iso_codes: [],
- *        absents_iso_codes: [],
- *        abstainers_iso_codes: []
+ *        yes: [],
+ *        no: [],
+ *        absents: [],
+ *        abstainers: []
  *      }
  */
 function MyMap(vote_results){
-  
   MyMap.Constants = {
     green:"#29ff45",
     red:"#ff2929",
@@ -50,11 +57,15 @@ function MyMap(vote_results){
  
   
   this.colorizeCountries = function(data){
-    var ref = MyMap.ref;
-    var color = ref.getColor(data.iso);
+    var color = MyMap.instance.getColor(data.iso);
     return color;
   };
   
+  /**
+   * Returns the color depending on the vote result associated to the iso_code
+   * @param iso_code, ISO code of the country
+   * @return color, hexadecimal color
+   */
   this.getColor = function(iso_code){
     var color = "";
     if(this.isInYesVotes(iso_code)){
@@ -70,19 +81,29 @@ function MyMap(vote_results){
   };
   
   // weird hack :/
-  MyMap.ref = this;
+  MyMap.instance = this;
 }
 
+/** 
+ * Callback for map loading
+ * It will draw the "crountries" layer and style the different countries with colorizeCountries methods
+ */
 MyMap.prototype.drawMap = function(map){
-  var ref = MyMap.ref;
-  ref.map.addLayer("countries");
-  ref.map.getLayer("countries").style('fill', ref.colorizeCountries);
+  MyMap.instance.map.addLayer("countries");
+  MyMap.instance.map.getLayer("countries").style('fill', MyMap.instance.colorizeCountries);
  
 }
 
-MyMap.prototype.initMap = function(id, map_name){
-    MyMap.prototype.map = Kartograph.map(id,575,310);
-    MyMap.prototype.map.loadMap(map_name, this.drawMap, {zoom:1, padding:-10});
+/**
+ * Initialize Kartograph.js 
+ * @param id
+ *      the id of the HTML element for map loading
+ * @param map_name
+ *      the path of SVG file
+ */
+MyMap.prototype.initMap = function(id, svg_filename, options){
+    MyMap.prototype.map = Kartograph.map(id,options.width, options.height);
+    MyMap.prototype.map.loadMap(svg_filename, this.drawMap, options.map_options);
 };
 
 

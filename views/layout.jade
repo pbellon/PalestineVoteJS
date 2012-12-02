@@ -17,7 +17,12 @@ html
     script
       var data = !{JSON.stringify(iso_codes)};
       var map = new MyMap(data);
-      map.initMap('#map','assets/world_test.svg');
+      var options = {
+        width: 575,
+        height: 310,
+        map_options:  {zoom:1, padding:-10}
+      }
+      map.initMap('#map','assets/world_test.svg', options);
       
      
    
