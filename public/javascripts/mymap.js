@@ -81,8 +81,8 @@ MyMap.prototype.drawMap = function(map){
 }
 
 MyMap.prototype.initMap = function(id, map_name){
-    MyMap.prototype.map = Kartograph.map(id,600,310);
-    MyMap.prototype.map.loadMap(map_name, this.drawMap, {zoom:1.0});
+    MyMap.prototype.map = Kartograph.map(id,575,310);
+    MyMap.prototype.map.loadMap(map_name, this.drawMap, {zoom:1, padding:-10});
 };
 
 

@@ -1,5 +1,6 @@
 {
-  "vote_results_by_country":{
+  "vote_results":
+    {
     "voted_no":
       [
       {

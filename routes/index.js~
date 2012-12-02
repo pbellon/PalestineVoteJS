@@ -5,19 +5,20 @@
 
   
 exports.index = function(req, res){
-  var iso_codes = getIsoCodesFromResults('../vote_results.json');
-  
-  res.render('index', {iso_codes: iso_codes});
+  var iso_codes = getIsoCodesFromResults('../public/assets/vote_results.json');
+  var results = {};
+  results.iso_codes = iso_codes;
+  res.render('index', results);
 };
 
 function getIsoCodesFromResults(json_filename){
   var vote_results = require(json_filename).vote_results;
-  return {
-    yes_votes_iso_codes: getIsoArray(vote_results.voted_yes),
-    no_votes_iso_codes: getIsoArray(vote_results.voted_no),
-    absents_iso_codes: getIsoArray(vote_results.absents),
-    abstainers_iso_codes: getIsoArray(vote_results.abstainers)
-  };
+  var results = {};
+  results.yes = getIsoArray(vote_results.voted_yes);
+  results.no =  getIsoArray(vote_results.voted_no);
+  results.absents = getIsoArray(vote_results.absents);
+  results.abstainers = getIsoArray(vote_results.abstainers);
+  return results;
 }
             
 function getIsoArray(countries){
