@@ -1,0 +1,47 @@
+extends layout
+
+
+block content
+  
+  - vote_number = 188
+  - yes_votes = 138
+  - yes_percentage = Math.round((yes_votes/vote_number)*100)
+  - no_votes = 9
+  - no_percentage = Math.round((no_votes/vote_number)*100)
+  - abstainers = 41
+  - abstainers_percentage = Math.round((abstainers/vote_number)*100)
+  - absents = 5
+  
+  .container
+    h1 Results of Palestine's status vote at UN
+    p 
+      | The 29th November, the UN General Assembly voted to recognize as non-member observer state.
+      | <br/><strong>#{yes_percentage}%</strong> of UN's members voted for this resolution,
+      | <strong>#{no_percentage}%</strong> voted against and <strong>#{abstainers_percentage}%</strong> abstained.
+    .row
+      .datas.span2
+        dl 
+          dt
+            = vote_number + " countries voted"
+          dd 
+            span.label.green
+              = yes_votes
+            ="voted yes"
+          dd 
+            span.label.red
+              = no_votes
+            ="voted no"
+          dd
+            span.label.grey
+              = abstainers
+            ="abstained"
+          dd
+            span.label.dark-grey
+              = absents
+            ="were absents"
+      #map.span6.img-polaroid
+
+
+    
+   
+    

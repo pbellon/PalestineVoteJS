@@ -1,0 +1,31 @@
+.container{
+  width:1000px;
+  margin:auto; 
+}
+
+
+span.green{
+  color:black;
+  text-shadow:0 -1px rgba(255,255,255, 0.2);
+  background-color:#29ff45;
+}
+span.red{
+  background-color:#ff2929;
+}
+
+span.grey{
+  background-color:#b3b3b3;
+}
+
+span.dark-grey{
+  background-color:#737373;
+}
+
+.label{
+  margin-right:5px;
+}
+
+dd {
+  margin-bottom:5px;
+  
+}

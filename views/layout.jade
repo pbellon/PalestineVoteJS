@@ -1,0 +1,26 @@
+doctype 5
+html
+  head
+    title Results of palestine
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/font-awesome.css')
+    link(rel='stylesheet', href='/css/style.css')
+  body
+    results = iso_codes
+    block content
+    
+    script(src='javascripts/jquery.min.js')
+    script(src='javascripts/raphael-min.js')
+    script(src='javascripts/bootstrap.min.js')
+    script(src='javascripts/kartograph.min.js')
+    script(src='javascripts/mymap.js')
+    script
+      var data = !{JSON.stringify(iso_codes)};
+      var map = new MyMap(data);
+      map.initMap('#map','assets/world_test.svg');
+      
+     
+   
+      
+    
+    
