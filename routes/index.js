@@ -12,12 +12,12 @@ exports.index = function(req, res){
 
 function getIsoCodesFromResults(json_filename){
   var vote_results = require(json_filename).vote_results;
-  return {
-    yes: getIsoArray(vote_results.voted_yes),
-    no: getIsoArray(vote_results.voted_no),
-    absents: getIsoArray(vote_results.absents),
-    abstainers: getIsoArray(vote_results.abstainers)
-  };
+  var results = {};
+  results.yes = getIsoArray(vote_results.voted_yes);
+  results.no =  getIsoArray(vote_results.voted_no);
+  results.absents = getIsoArray(vote_results.absents);
+  results.abstainers = getIsoArray(vote_results.abstainers);
+  return results;
 }
             
 function getIsoArray(countries){
