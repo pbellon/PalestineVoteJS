@@ -56,14 +56,12 @@ function MyMap(vote_results){
   };
   
   this.getColor = function(iso_code){
-    console.log(iso_code);
     var color = "";
     if(this.isInYesVotes(iso_code)){
       color = MyMap.Constants.green;
     } else if (this.isInNoVotes(iso_code)){
       color = MyMap.Constants.red; 
     } else if (this.isInAbstainers(iso_code)){
-      console.log(iso_code + " didn't vote");
       color = MyMap.Constants.grey;
     } else if (this.isInAbsents(iso_code)){
       color = MyMap.Constants.dark_grey;
